@@ -2516,6 +2516,7 @@ public class PdfDocument extends Document {
             p.setLeading(0);
             ct.addElement(p);
         }
+        ct.setAdjustFirstLine(false);
         ct.addElement(ptable);
         boolean he = ptable.isHeadersInEvent();
         ptable.setHeadersInEvent(true);
@@ -2523,6 +2524,7 @@ public class PdfDocument extends Document {
         while (true) {
             ct.setSimpleColumn(indentLeft(), indentBottom(), indentRight(), indentTop() - currentHeight);
             int status = ct.go();
+            ct.setAdjustFirstLine(true);
             if ((status & ColumnText.NO_MORE_TEXT) != 0) {
                 text.moveText(0, ct.getYLine() - indentTop() + currentHeight);
                 currentHeight = indentTop() - ct.getYLine();
